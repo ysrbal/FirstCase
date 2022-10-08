@@ -11,7 +11,6 @@ public class Employee {
         this.hireYear = hireYear;
     }
 
-    public Employee() {}
 
     public String getEmployeeName() {
         return employeeName;
@@ -25,7 +24,7 @@ public class Employee {
         return employeeSalary;
     }
 
-    public void setEmployeeSalary(int employeeSalary) {
+    public void setEmployeeSalary(double employeeSalary) {
         this.employeeSalary = employeeSalary;
     }
 
@@ -45,13 +44,52 @@ public class Employee {
         this.hireYear = hireYear;
     }
 
-    public double tax() {
-        double tax;
-        if (getEmployeeSalary() >= 1000) {
-            tax = (getEmployeeSalary() * 3) / 100;
+    public void tax() {
+        double afterTax;
+        System.out.println("###########################");
+        System.out.println("Salary Before Tax : " + getEmployeeSalary() + " TRY");
+        if (this.getEmployeeSalary() < 1000) {
+            this.getEmployeeSalary();
         } else {
-            tax = 0;
+            this.setEmployeeSalary(this.getEmployeeSalary() - ((this.getEmployeeSalary() * 3) / 100));
         }
-        return tax;
+        System.out.println("3% tax has been withheld from your salary.");
+        System.out.println("Salary After Tax : " + getEmployeeSalary() + " TRY");
+    }
+
+    public void bonus() {
+        System.out.println("###########################");
+        System.out.println("Salary Before Bonus : " + getEmployeeSalary() + " TRY");
+        if (getWorkHours() < 40) {
+            this.getEmployeeSalary();
+        } else {
+            this.setEmployeeSalary(this.getEmployeeSalary() + ((this.getWorkHours() - 40) * 30));
+        }
+        System.out.println(("You've worked more than " + (this.getWorkHours() - 40) + " hours." +
+                "You earned " + ((this.getWorkHours() - 40) * 30)) + " TRY overtime wage.");
+        System.out.println("Salary After Bonus : " + getEmployeeSalary() + " TRY");
+
+    }
+
+    public void raiseSalary() {
+        int currentYear = 2021;
+        System.out.println("###########################");
+        System.out.println("Salary Before Raise : " + getEmployeeSalary() + " TRY");
+        if ((currentYear - this.getHireYear()) < 10) {
+            this.setEmployeeSalary(this.getEmployeeSalary() + ((this.getEmployeeSalary() * 5) / 100));
+        } else if ((currentYear - this.getHireYear()) >= 10 && (currentYear - this.getHireYear()) < 20) {
+            this.setEmployeeSalary(this.getEmployeeSalary() + ((this.getEmployeeSalary() * 10) / 100));
+        } else {
+            this.setEmployeeSalary(this.getEmployeeSalary() + ((this.getEmployeeSalary() * 15) / 100));
+        }
+        System.out.println("Salary After Raise : " + getEmployeeSalary() + "TRY");
+
+    }
+
+    public String toString() {
+        return "Employee Name : " + getEmployeeName() +
+                "\nEmployee Salary : " + getEmployeeSalary() + " TRY" +
+                "\nEmployee Work Hours : " + getWorkHours() +
+                "\nEmployee Hire Year : " + getHireYear();
     }
 }
