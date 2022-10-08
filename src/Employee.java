@@ -1,15 +1,17 @@
 public class Employee {
     private String employeeName;
-    private int employeeSalary;
+    private double employeeSalary;
     private int workHours;
     private int hireYear;
 
-    public Employee(String employeeName, int employeeSalary, int workHours, int hireYear) {
+    public Employee(String employeeName, double employeeSalary, int workHours, int hireYear) {
         this.employeeName = employeeName;
         this.employeeSalary = employeeSalary;
         this.workHours = workHours;
         this.hireYear = hireYear;
     }
+
+    public Employee() {}
 
     public String getEmployeeName() {
         return employeeName;
@@ -19,7 +21,7 @@ public class Employee {
         this.employeeName = employeeName;
     }
 
-    public int getEmployeeSalary() {
+    public double getEmployeeSalary() {
         return employeeSalary;
     }
 
@@ -41,5 +43,15 @@ public class Employee {
 
     public void setHireYear(int hireYear) {
         this.hireYear = hireYear;
+    }
+
+    public double tax() {
+        double tax;
+        if (getEmployeeSalary() >= 1000) {
+            tax = (getEmployeeSalary() * 3) / 100;
+        } else {
+            tax = 0;
+        }
+        return tax;
     }
 }
